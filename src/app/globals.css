@@ -1,26 +1,83 @@
 @import "tailwindcss";
 
+@font-face {
+  font-family: "Montserrat";
+  src: url("/fonts/Montserrat-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Montserrat";
+  src: url("/fonts/Montserrat-Italic.ttf") format("truetype");
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --font-medium-semi: 550;
+  --letter-spacing-tight: 0.25px;
+  --line-height-custom: 1.4;
+  --font-primary: "Montserrat", Arial, Helvetica, sans-serif;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+html[data-theme="light"] {
+  --background: #ffffff;
+  --foreground: #171717;
+  background-color: var(--background);
+  color: var(--foreground);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html[data-theme="dark"] {
+  --background: oklch(0.21 0.034 264.665);
+  --foreground: #ffffff;
+  background-color: var(--background);
+  color: var(--foreground);
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-primary);
+  transition: background-color 0.3s, color 0.3s;
+}
+
+html[data-theme="dark"] body {
+  color: white !important;
+}
+
+html[data-theme="light"] body {
+  color: black !important;
+}
+
+.font-medium-semi {
+  font-family: var(--font-primary);
+  font-weight: var(--font-medium-semi);
+  letter-spacing: var(--letter-spacing-tight);
+  line-height: var(--line-height-custom);
+}
+
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+button {
+  transition: background-color 0.3s;
+}
+
+button.bg-yellow-500 {
+  background-color: rgb(43, 65, 110);
+}
+
+button.bg-gray-500 {
+  background-color: rgb(18, 18, 17);
 }
